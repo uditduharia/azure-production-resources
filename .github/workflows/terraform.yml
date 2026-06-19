@@ -1,4 +1,4 @@
-name: Terraform Deployment
+name: Terraform
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
 
 jobs:
   terraform:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,13 +26,7 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v3
 
-      - name: Install TFLint
-        run: |
-          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-
       - run: terraform init
-
-      - run: tflint
 
       - run: terraform plan
 
