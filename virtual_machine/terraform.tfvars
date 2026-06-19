@@ -1,5 +1,5 @@
 
-   resource_group_name  = "resourge_group-ud"
+   resource_group_name  = "resource-group-ud"
     location             = "Central India"
     virtual_network_name = "vnet-hub"
 

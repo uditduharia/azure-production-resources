@@ -1,7 +1,7 @@
 rgs = {
 
 rg1 = {
-    name = "resourge_group-ud"
+    name = "resource-group-ud"
     location = "central india"
 }
 
