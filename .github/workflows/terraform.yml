@@ -1,0 +1,40 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        folder:
+          - resource_group
+          - virtual_network
+          - subnet
+          - virtual_machine
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.folder }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Install TFLint
+        run: |
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+
+      - run: terraform init
+
+      - run: tflint
+
+      - run: terraform plan
+
+      - run: terraform apply -auto-approve
